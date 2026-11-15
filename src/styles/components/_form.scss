@@ -1,0 +1,168 @@
+@use '../abstracts/mixins' as m;
+
+.app-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+
+  // Modal / dialog forms — clearer separation between label and control
+  &:has(.app-field__label--upper) {
+    gap: var(--space-4);
+  }
+
+  &__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  &__label--upper {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-secondary);
+  }
+
+  &__required {
+    color: var(--color-danger);
+    margin-left: 2px;
+  }
+
+  &__helper {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  &__error {
+    font-size: 0.75rem;
+    color: var(--color-danger);
+  }
+}
+
+.app-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+// MUI controls — unified field height (text, number, select)
+.app-input-control,
+.app-filter-select {
+  .MuiOutlinedInput-root {
+    min-height: 44px;
+    border-radius: 10px;
+  }
+
+  .MuiOutlinedInput-notchedOutline legend {
+    display: none;
+  }
+
+  .MuiInputLabel-root {
+    display: none !important;
+  }
+}
+
+.app-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-border-strong);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-primary-soft);
+  }
+
+  &--error {
+    border-color: var(--color-danger);
+
+    &:focus {
+      box-shadow: 0 0 0 3px var(--color-danger-soft);
+    }
+  }
+
+  &--has-prefix {
+    padding-left: 2.5rem;
+  }
+
+  &--has-suffix {
+    padding-right: 2.5rem;
+  }
+
+  &__affix {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text-muted);
+    pointer-events: none;
+
+    &--prefix {
+      left: var(--space-3);
+    }
+
+    &--suffix {
+      right: var(--space-3);
+    }
+  }
+}
+
+.app-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  padding-right: 2.25rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  appearance: none;
+  cursor: pointer;
+}
+
+.app-textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.8125rem;
+  color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  resize: vertical;
+}
+
+.app-form-grid {
+  display: grid;
+  gap: var(--space-5);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.app-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}

@@ -1,0 +1,110 @@
+/* @author veera */
+/* @file   globals.css                                                  */
+/* FinFlux global styles — theme-aware via CSS variables.               */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root { height: 100%; overflow: hidden; }
+
+/* ── Light theme (default) ───────────────────────────────────────────── */
+:root,
+html[data-theme="light"] {
+  --x-bg:        #f5f6f8;
+  --x-card:      #ffffff;
+  --x-card-alt:  #f8fafc;
+  --x-border:    #e5e7eb;
+  --x-border-l:  #f0f1f3;
+  --x-text:      #1a1d26;
+  --x-text-s:    #4b5563;
+  --x-text-m:    #9ca3af;
+
+  --x-slate-l:   #f1f5f9;
+  --x-green-l:   #dcfce7;
+  --x-blue-l:    #dbeafe;
+  --x-amber-l:   #fef3c7;
+  --x-red-l:     #fee2e2;
+  --x-purple-l:  #ede9fe;
+  --x-cyan-l:    #cffafe;
+
+  --x-shadow-sm: 0 1px 3px rgba(0, 0, 0, .04);
+  --x-shadow:    0 4px 12px rgba(0, 0, 0, .06);
+  --x-overlay:   rgba(0, 0, 0, .45);
+  --x-scroll:    #ccd0d7;
+
+  color-scheme: light;
+}
+
+/* ── Dark theme ──────────────────────────────────────────────────────── */
+html[data-theme="dark"] {
+  --x-bg:        #0b1220;
+  --x-card:      #111827;
+  --x-card-alt:  #1a2233;
+  --x-border:    #2a3548;
+  --x-border-l:  #1e2940;
+  --x-text:      #e5e7eb;
+  --x-text-s:    #cbd5e1;
+  --x-text-m:    #94a3b8;
+
+  --x-slate-l:   rgba(100, 116, 139, .18);
+  --x-green-l:   rgba(22,  163,  74, .18);
+  --x-blue-l:    rgba(37,  99,  235, .18);
+  --x-amber-l:   rgba(217, 119,   6, .22);
+  --x-red-l:     rgba(220,  38,  38, .20);
+  --x-purple-l:  rgba(124,  58, 237, .20);
+  --x-cyan-l:    rgba(  8, 145, 178, .22);
+
+  --x-shadow-sm: 0 1px 3px rgba(0, 0, 0, .35);
+  --x-shadow:    0 4px 14px rgba(0, 0, 0, .55);
+  --x-overlay:   rgba(0, 0, 0, .65);
+  --x-scroll:    #475569;
+
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--x-bg);
+  color: var(--x-text);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--x-scroll); border-radius: 10px; }
+
+button {
+  font-family: inherit;
+  transition: all 0.1s;
+  cursor: pointer;
+}
+button:active { transform: scale(0.97); }
+
+input, select, textarea {
+  font-family: inherit;
+  background: var(--x-card);
+  color: var(--x-text);
+  border-color: var(--x-border);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #16a34a !important;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.10) !important;
+  outline: none;
+}
+
+/* Native pickers in dark mode */
+html[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator,
+html[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse  { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes gf     { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }

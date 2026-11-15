@@ -1,0 +1,115 @@
+@use '../abstracts/mixins' as m;
+
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  @include m.focus-ring;
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--sm {
+    min-height: 32px;
+    padding: 0 var(--space-3);
+    font-size: 0.75rem;
+  }
+
+  &--md {
+    min-height: 38px;
+    padding: 0 var(--space-4);
+  }
+
+  &--lg {
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    font-size: 0.875rem;
+  }
+
+  &--primary {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+
+    &:hover:not(:disabled) {
+      background: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+    }
+  }
+
+  &--secondary {
+    background: var(--color-bg-muted);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+
+    &:hover:not(:disabled) {
+      background: var(--color-bg-elevated);
+      border-color: var(--color-border-strong);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary-muted);
+
+    &:hover:not(:disabled) {
+      background: var(--color-primary-soft);
+      border-color: var(--color-primary);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      background: var(--color-neutral-soft);
+      color: var(--color-text-primary);
+    }
+  }
+
+  &--danger {
+    background: var(--color-danger);
+    color: #fff;
+    border-color: var(--color-danger);
+
+    &:hover:not(:disabled) {
+      background: #b91c1c;
+      border-color: #b91c1c;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  &__spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

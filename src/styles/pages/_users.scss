@@ -1,0 +1,65 @@
+.users-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+
+  .users-bulk-bar {
+    border-color: var(--color-primary-muted) !important;
+    background: var(--color-primary-soft);
+  }
+
+  .users-licence-card {
+    &__metrics {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+
+    &__metric {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-1);
+      min-width: 56px;
+    }
+
+    &__metric-value {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    &__metric-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    &__progress {
+      height: 8px;
+      border-radius: var(--radius-sm);
+      background: var(--color-border);
+      overflow: hidden;
+      margin-top: var(--space-5);
+    }
+
+    &__progress-bar {
+      height: 100%;
+      border-radius: var(--radius-sm);
+      background: var(--color-primary);
+      transition: width 0.3s ease;
+    }
+  }
+
+  .users-filters {
+    display: grid;
+    gap: var(--space-4);
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      align-items: end;
+    }
+  }
+}

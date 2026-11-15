@@ -1,0 +1,314 @@
+@use '../abstracts/typography' as t;
+@use '../abstracts/mixins' as m;
+
+body {
+  font-family: t.$font-family-base;
+  font-size: t.$font-size-body;
+  line-height: t.$line-height-normal;
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+// Typography hierarchy utilities
+.text-page-title {
+  font-size: t.$font-size-page-title;
+  font-weight: t.$font-weight-extrabold;
+  letter-spacing: -0.03em;
+  line-height: t.$line-height-tight;
+  color: var(--color-text-primary);
+}
+
+.text-section-title {
+  font-size: t.$font-size-section-title;
+  font-weight: t.$font-weight-bold;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.text-card-title {
+  font-size: t.$font-size-card-title;
+  font-weight: t.$font-weight-bold;
+  color: var(--color-text-primary);
+}
+
+.text-muted {
+  font-size: t.$font-size-muted;
+  color: var(--color-text-muted);
+}
+
+.text-helper {
+  font-size: t.$font-size-helper;
+  color: var(--color-text-secondary);
+}
+
+.text-error {
+  font-size: t.$font-size-error;
+  color: var(--color-danger);
+}
+
+// Scrollable regions
+.app-scroll {
+  @include m.scrollbar-thin;
+  overflow: auto;
+}
+
+// MUI components — Inter globally
+.MuiTypography-root,
+.MuiButton-root,
+.MuiInputBase-root,
+.MuiDataGrid-root,
+.MuiTab-root,
+.MuiChip-root {
+  font-family: Inter, sans-serif !important;
+}
+
+// MUI DataGrid theme bridge
+.app-data-grid {
+  border: none !important;
+  background: var(--color-bg-surface) !important;
+
+  .MuiDataGrid-columnHeaders {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .MuiDataGrid-columnHeaderTitle {
+    font-size: 0.8125rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.05em;
+  }
+
+  html[data-theme='dark'] & .MuiDataGrid-columnHeaders {
+    background: var(--color-bg-elevated) !important;
+    color: var(--color-text-primary) !important;
+  }
+
+  html[data-theme='dark'] & .MuiDataGrid-columnHeaderTitle {
+    font-weight: 800 !important;
+  }
+
+  .MuiDataGrid-columnHeader {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .MuiDataGrid-cell {
+    display: flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.45;
+    border-bottom-color: var(--color-border) !important;
+  }
+
+  .MuiDataGrid-row:hover {
+    background: var(--color-primary-soft) !important;
+  }
+
+  .MuiDataGrid-row.Mui-selected {
+    background: var(--color-primary-soft) !important;
+  }
+
+  .MuiDataGrid-footerContainer {
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-muted);
+    min-height: 52px;
+    padding: 0 var(--space-5) !important;
+  }
+
+  .MuiTablePagination-root {
+    width: 100%;
+    margin: 0 !important;
+    overflow: visible;
+    border: none !important;
+  }
+
+  .MuiTablePagination-toolbar {
+    justify-content: flex-end !important;
+    align-items: center;
+    width: 100%;
+    min-height: 52px;
+    padding: var(--space-2) 0 !important;
+    gap: var(--space-5);
+    flex-wrap: nowrap;
+  }
+
+  .MuiTablePagination-spacer {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .MuiTablePagination-selectLabel {
+    margin: 0 !important;
+    order: 1;
+  }
+
+  .MuiTablePagination-select {
+    order: 2;
+    margin-left: var(--space-1) !important;
+    margin-right: var(--space-2) !important;
+  }
+
+  .MuiTablePagination-input {
+    margin-right: var(--space-2) !important;
+  }
+
+  .MuiTablePagination-select .MuiSelect-select {
+    padding-right: calc(var(--space-6) + 4px) !important;
+    padding-left: var(--space-2) !important;
+    min-width: 2.5rem;
+  }
+
+  .MuiTablePagination-select .MuiSelect-icon {
+    right: var(--space-1);
+  }
+
+  .MuiTablePagination-displayedRows {
+    order: 3;
+    margin: 0 var(--space-2) !important;
+  }
+
+  .MuiTablePagination-actions {
+    order: 4;
+    margin-left: var(--space-2) !important;
+    gap: var(--space-1);
+
+    .MuiIconButton-root + .MuiIconButton-root {
+      margin-left: var(--space-1);
+    }
+  }
+
+  .MuiTablePagination-displayedRows,
+  .MuiTablePagination-selectLabel,
+  .MuiTablePagination-select {
+    font-size: 0.8125rem !important;
+    font-weight: 600;
+  }
+}
+
+// Light theme — override MUI DataGrid container background (beats .css-* generated rules)
+html[data-theme='light'] .app-data-grid {
+  .MuiDataGrid-container--top {
+    --DataGrid-containerBackground: #047857;
+  }
+
+  .MuiDataGrid-container--top [role='row'],
+  .MuiDataGrid-container--top [role='row'] .MuiDataGrid-columnHeader,
+  .MuiDataGrid-columnHeaders,
+  .MuiDataGrid-columnHeader {
+    background-color: #047857 !important;
+    background: #047857 !important;
+  }
+
+  .MuiDataGrid-columnHeaders {
+    color: #ffffff !important;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .MuiDataGrid-columnHeader {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+
+  .MuiDataGrid-columnHeaderTitle {
+    font-size: 0.8125rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+  }
+
+  .MuiDataGrid-iconSeparator,
+  .MuiDataGrid-sortIcon,
+  .MuiDataGrid-menuIcon,
+  .MuiDataGrid-iconButtonContainer button {
+    color: #ffffff !important;
+  }
+
+  // Header checkbox only — white on green (do not style body row checkboxes)
+  .MuiDataGrid-columnHeaderCheckbox .MuiCheckbox-root,
+  .MuiDataGrid-columnHeader .MuiCheckbox-root {
+    color: #ffffff !important;
+
+    &.Mui-checked,
+    &.MuiCheckbox-indeterminate {
+      color: #ffffff !important;
+    }
+
+    .MuiSvgIcon-root {
+      font-size: 1.35rem;
+    }
+  }
+
+  // Body row checkboxes — visible on white rows
+  .MuiDataGrid-cellCheckbox .MuiCheckbox-root,
+  .MuiDataGrid-cell .MuiCheckbox-root {
+    color: #64748b !important;
+
+    &.Mui-checked,
+    &.MuiCheckbox-indeterminate {
+      color: var(--color-primary) !important;
+    }
+
+    .MuiSvgIcon-root {
+      font-size: 1.35rem;
+    }
+  }
+
+  .MuiDataGrid-container--bottom {
+    --DataGrid-containerBackground: #ffffff;
+  }
+
+  .MuiDataGrid-container--bottom [role='row'] {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  .MuiDataGrid-footerContainer {
+    background: #ffffff !important;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    justify-content: flex-end !important;
+    padding: 0 var(--space-5) !important;
+  }
+}
+
+html[data-theme='dark'] input[type='date']::-webkit-calendar-picker-indicator,
+html[data-theme='dark'] input[type='time']::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

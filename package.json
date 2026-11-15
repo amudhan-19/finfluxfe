@@ -1,0 +1,50 @@
+{
+  "name": "finflux-frontend",
+  "version": "2.0.0",
+  "description": "Tick & Tie — FinFlux role-based SPA (Analyst / Supervisor / Director / Admin)",
+  "author": "veera",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@hookform/resolvers": "^3.6.0",
+    "@mui/icons-material": "^6.5.0",
+    "@mui/material": "^6.5.0",
+    "@mui/x-data-grid": "^7.29.13",
+    "@mui/x-date-pickers": "^7.29.4",
+    "@mui/x-license": "^9.2.0",
+    "@tanstack/react-query": "^5.40.0",
+    "@tanstack/react-query-devtools": "^5.40.0",
+    "axios": "^1.7.2",
+    "dayjs": "^1.11.11",
+    "lucide-react": "^1.14.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.52.0",
+    "react-router-dom": "^6.23.1",
+    "recharts": "^3.8.1",
+    "swiper": "^12.1.4",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "sass": "^1.99.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}

@@ -1,0 +1,323 @@
+.admin-config-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+// Collapsible config sections (Module Access, Permissions, etc.)
+.config-section {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+
+  &--open {
+    box-shadow: var(--shadow-md);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+    padding: var(--space-5) var(--space-6);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+    font-family: inherit;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background: var(--color-neutral-soft);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  &__subtitle {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    line-height: 1.45;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--color-neutral-soft);
+    color: var(--color-text-secondary);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  &--open &__toggle {
+    background: var(--color-primary);
+    color: #ffffff;
+    transform: rotate(0deg);
+  }
+
+  &:not(.config-section--open) &__toggle {
+    transform: rotate(-90deg);
+  }
+
+  &__body {
+    padding: 0 var(--space-6) var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+// Permission / module access matrix
+.config-matrix-wrap {
+  overflow-x: auto;
+  margin-top: var(--space-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-surface);
+}
+
+.config-matrix {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+
+  &__th {
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.6875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    background: var(--color-primary);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+
+    &--module {
+      text-align: left;
+      min-width: 200px;
+    }
+
+    &--role {
+      text-align: center;
+      width: 108px;
+    }
+
+    &--locked {
+      color: rgba(255, 255, 255, 0.92);
+    }
+  }
+
+  thead tr {
+    background: var(--color-primary);
+  }
+
+  &__row {
+    border-top: 1px solid var(--color-border);
+
+    &:hover {
+      background: var(--color-primary-soft);
+    }
+  }
+
+  &__td {
+    padding: var(--space-4);
+    vertical-align: middle;
+
+    &--module {
+      text-align: left;
+    }
+
+    &--check {
+      text-align: center;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+  }
+
+  &__key {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+  }
+
+  &__checkbox {
+    padding: 4px;
+
+    .MuiSvgIcon-root {
+      font-size: 1.35rem;
+    }
+
+    color: var(--color-border-strong) !important;
+
+    &.Mui-checked {
+      color: var(--color-primary) !important;
+    }
+
+    &--locked.Mui-disabled {
+      color: var(--color-text-muted) !important;
+      opacity: 0.85;
+    }
+  }
+}
+
+// Granular permissions — category tabs
+.config-perm-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+
+  &__content {
+    .config-matrix-wrap {
+      margin-top: 0;
+    }
+  }
+}
+
+.config-perm-tabs {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 4px;
+  }
+
+  &__item {
+    flex-shrink: 0;
+    padding: var(--space-3) var(--space-4);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+
+    &:hover {
+      color: var(--color-text-primary);
+      background: var(--color-neutral-soft);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    &--active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+      font-weight: 700;
+    }
+  }
+}
+
+.config-matrix-loading,
+.config-matrix-error {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+html[data-theme='dark'] {
+  .config-section {
+    background: var(--color-bg-surface);
+    border-color: var(--color-border);
+
+    &__icon {
+      background: rgba(3, 168, 80, 0.18);
+    }
+  }
+
+  .config-matrix-wrap {
+    border-color: var(--color-border);
+    background: var(--color-bg-elevated);
+  }
+
+  .config-matrix thead tr,
+  .config-matrix__th {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .config-matrix__row:hover {
+    background: rgba(3, 168, 80, 0.1);
+  }
+
+  .config-matrix__checkbox {
+    color: var(--color-border-strong) !important;
+
+    &.Mui-checked {
+      color: var(--color-primary) !important;
+    }
+  }
+
+  .config-perm-tabs {
+    border-bottom-color: var(--color-border);
+
+    &__item--active {
+      color: var(--color-primary);
+    }
+  }
+}

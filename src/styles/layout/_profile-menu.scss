@@ -1,0 +1,159 @@
+@use '../abstracts/mixins' as m;
+
+.app-profile-menu {
+  position: absolute;
+  right: var(--space-4);
+  top: calc(100% + var(--space-2));
+  z-index: 1201;
+  width: 280px;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.14);
+  overflow: hidden;
+  animation: slideUp 0.18s ease;
+
+  html[data-theme='dark'] & {
+    background: var(--color-bg-elevated);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: transparent;
+  }
+
+  &__user {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-4) var(--space-3);
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    @include m.flex-center;
+  }
+
+  &__info {
+    min-width: 0;
+    flex: 1;
+    padding-top: 2px;
+  }
+
+  &__name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    @include m.truncate;
+  }
+
+  &__email {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+    @include m.truncate;
+  }
+
+  &__role-badge {
+    display: inline-flex;
+    margin-top: var(--space-2);
+    padding: 2px 10px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+    border: 1px solid var(--color-primary-muted);
+    border-radius: var(--radius-full);
+    text-transform: capitalize;
+  }
+
+  &__divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 0;
+  }
+
+  &__items {
+    padding: var(--space-2) 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: none;
+    background: transparent;
+    font-family: Inter, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.12s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-bg-muted);
+      outline: none;
+    }
+
+    svg {
+      flex-shrink: 0;
+      color: var(--color-text-secondary);
+    }
+
+    &--danger {
+      color: var(--color-danger);
+
+      svg {
+        color: var(--color-danger);
+      }
+
+      &:hover,
+      &:focus-visible {
+        background: var(--color-danger-soft);
+      }
+    }
+  }
+}
+
+.app-topbar__avatar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &[aria-expanded='true'] {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(3, 168, 80, 0.35);
+  }
+}
